@@ -3,6 +3,7 @@ import "./App.css";
 import AuthPage from "./components/Pages/AuthPage";
 import { Route } from "react-router-dom";
 import Mailfirst from "./components/Mail/ComposeMailt";
+import Inbox from "./components/Mail/Inbox";
 
 // import AuthPage from './components/Pages/AuthPage';
 // import { Route, Switch } from "react-router-dom"; 
@@ -16,6 +17,9 @@ function App() {
       </Route>
       <Route path="/auth" exact>
         <AuthPage />
+      </Route>
+      <Route path="/inbox" exact>
+        <Inbox />
       </Route>
       <Route path="/mail">
         <Mailfirst />
