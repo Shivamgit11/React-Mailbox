@@ -1,12 +1,26 @@
-import React from 'react';
-import './App.css';
-import Auth from './components/Auth/Auth';
+import React from "react";
+import "./App.css";
+import AuthPage from "./components/Pages/AuthPage";
+import { Route } from "react-router-dom";
+import Mailfirst from "./components/Mail/ComposeMailt";
+
+// import AuthPage from './components/Pages/AuthPage';
+// import { Route, Switch } from "react-router-dom"; 
 
 function App() {
   return (
-    <>
-      <Auth />
-    </>
+    <main>
+      <h1>MailBox</h1>
+      <Route path="/" exact>
+        <AuthPage />
+      </Route>
+      <Route path="/auth" exact>
+        <AuthPage />
+      </Route>
+      <Route path="/mail">
+        <Mailfirst />
+      </Route>
+    </main>
   );
 }
 

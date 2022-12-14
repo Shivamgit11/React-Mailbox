@@ -1,13 +1,14 @@
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-
-import { authActions } from "../store/Auth-redux";
-import { Fragment } from "react-bootstrap/dist/react-bootstrap";
+import { Redirect } from "react-router-dom";
 
 
-function Auth() {
+import { authActions } from "../store/auth-redux";
+
+
+import classes from "./AuthForm.module.css";
+
+const AuthForm = () => {
   console.log("insideAuth");
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setisLoading] = useState();
@@ -53,6 +54,7 @@ function Auth() {
         if (res.ok) {
           //...
           return res.json();
+          
         } else {
           //...
           return res.json().then((data) => {
@@ -70,53 +72,48 @@ function Auth() {
         console.log(data);
         dispatch(authActions.login(data.idToken));
         setlogingState(true);
+        localStorage.setItem("Email",enteredEmail);
       })
       .catch((err) => {
         alert(err.message);
       });
   };
-  return (
-    <Fragment>
-      {loginState && <h6>coming soon</h6>}
-      <h1>{isLogin ? "Login" : "Sign Up"}</h1>
-      <Form onsubmit={submitHandler}>
-        <Form.Group className="mb-3 mt-5" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Enter email"
-            required
-            ref={emailInputref}
-          />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
+  return (
+    <section className={classes.auth}>
+      {loginState && <Redirect to="/mail" />}
+      <h1>{isLogin ? "Login" : "Sign Up"}</h1>
+      <form onSubmit={submitHandler}>
+        <div className={classes.control}>
+          <label htmlFor="email">Your Email</label>
+          <input type="email" id="email" required ref={emailInputref} />
+        </div>
+        <div className={classes.control}>
+          <label htmlFor="password">Your Password</label>
+          <input
             type="password"
-            placeholder="Password"
+            id="password"
             required
             ref={passwordInputref}
           />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>confirm Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" required />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
-        <Button variant="primary" type="submit" onClick={switchAuthModeHandler}>
-        Signup
-      </Button>
-        {!isLoading && <Button>{isLogin ? "Login" : "Create Account"}</Button>}
-        {isLoading && <p>Sending Request....</p>}
-      </Form>
-    </Fragment>
+        </div>
+        <div className={classes.actions}>
+          {!isLoading && (
+            <button>{isLogin ? "Login" : "Create Account"}</button>
+          )}
+          {isLoading && <p>Sending Request....</p>}
+        </div>
+        
+      </form>
+      <button
+        type="button"
+        className={classes.forgot}
+        onClick={switchAuthModeHandler}
+      >
+        {isLogin ? "Create new account" : "Login with existing account"}
+      </button>
+    </section>
   );
-}
+};
 
-export default Auth;
+export default AuthForm;
