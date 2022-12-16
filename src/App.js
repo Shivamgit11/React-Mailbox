@@ -4,6 +4,7 @@ import AuthPage from "./components/Pages/AuthPage";
 import { Route } from "react-router-dom";
 import Mailfirst from "./components/Mail/ComposeMailt";
 import Inbox from "./components/Mail/Inbox";
+import MailDetails from "./components/Mail/MailDetails";
 
 // import AuthPage from './components/Pages/AuthPage';
 // import { Route, Switch } from "react-router-dom"; 
@@ -20,6 +21,9 @@ function App() {
       </Route>
       <Route path="/inbox" exact>
         <Inbox />
+      </Route>
+      <Route path="/inbox/details" exact>
+        <MailDetails />
       </Route>
       <Route path="/mail">
         <Mailfirst />
