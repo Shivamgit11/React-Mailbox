@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Redirect, useLocation } from "react-router-dom";
-import Header from "../Pages/Header";
+
 import { Button } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Badge from "react-bootstrap/Badge";
@@ -15,18 +15,17 @@ const MailDetails = () => {
 
   const DeletemailHandler = () => {
     fetch(
-        `https://mail-box01-default-rtdb.firebaseio.com/${email}/received/${Id}.json`,
-        {
-          method: "DELETE",
-        }
-      );
+      `https://mail-box01-default-rtdb.firebaseio.com/${email}/received/${Id}.json`,
+      {
+        method: "DELETE",
+      }
+    );
     alert("Delete mail handler is working");
-    <Redirect to="/inbox" />
+    <Redirect to="/inbox" />;
   };
 
   return (
     <Fragment>
-      <Header />
       <Card style={{ width: "90rem" }}>
         <Card.Body>
           <Card.Title>

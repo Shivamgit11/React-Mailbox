@@ -6,8 +6,6 @@ import ShowEmail from "./showemails";
 const Inbox = () => {
   return (
     <Fragment>
-      <Header />
-
       <ShowEmail />
     </Fragment>
   );
