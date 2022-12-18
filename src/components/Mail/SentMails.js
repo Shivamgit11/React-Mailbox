@@ -11,25 +11,34 @@ const ShowsentMail = (props) => {
 
   const [resmails, setMails] = useState([]);
 
+  //   setTimeout(() => {
+  // setInterval(() => {
   useEffect(() => {
-    axios
-      .get(
-        `https://mail-box01-default-rtdb.firebaseio.com/${email}/sent.json`
-      )
-      .then((res) => {
-        console.log(res.data);
-        setMails(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    setInterval(() => {
+      axios
+        .get(
+          `https://mail-box01-default-rtdb.firebaseio.com/${email}/sent.json`
+        )
+        .then((res) => {
+          console.log(res.data);
+
+          setMails(res.data);
+          console.log(setMails);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, 2000);
   }, []);
+  // }, 2000);
+  //   }, 2000);
 
   if (resmails === null) {
     return <h2>You have no mail</h2>;
   }
 
   const result = Object.values(resmails);
+  result.reverse();
 
   return (
     <>

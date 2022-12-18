@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import AuthPage from "./components/Pages/AuthPage";
-import { Route } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 
 import MailDetails from "./components/Mail/MailDetails";
 import ManagedMails from "./components/Mail/ManagedMails";
@@ -13,14 +13,9 @@ import { Button } from "react-bootstrap";
 // import { Route, Switch } from "react-router-dom";
 
 function App() {
+  
   return (
     <main>
-      <div className="d-grid gap-2">
-        <Button variant="primary" size="lg">
-          @Shivam-MailBox
-        </Button>
-      </div>
-
       <Route path="/" exact>
         <AuthPage />
       </Route>

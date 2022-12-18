@@ -1,16 +1,23 @@
 import React, { Fragment } from "react";
 import { useLocation } from "react-router-dom";
-import { Button } from "react-bootstrap";
+
 import Card from "react-bootstrap/Card";
 import Badge from "react-bootstrap/Badge";
+import { Button } from "react-bootstrap";
 
 const Showsentedmails = () => {
   const location = useLocation();
   const product = location.state2;
   console.log("inside show sent mails",product);
+  console.log(product.id);
 
   return (
     <Fragment>
+        <div className="d-grid gap-2">
+        <Button variant="primary" size="lg" href="/mail">
+          @Shivam-MailBox
+        </Button>
+      </div>
       <Card style={{ width: "90rem" }}>
         <Card.Body>
           <Card.Title>

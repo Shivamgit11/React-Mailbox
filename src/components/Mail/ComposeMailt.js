@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-
+import Header from "../Pages/Header";
 
 import { Fragment } from "react";
 import { Button, Form } from "react-bootstrap";
@@ -62,7 +62,7 @@ function Mailfirst() {
       const data = await res.json();
 
       fetch(
-        `https://mail-box01-default-rtdb.firebaseio.com/${receivedEmail}/received.json`,
+        `https://mail-box01-default-rtdb.firebaseio.com/${receivedEmail}/received/${data.name}.json`,
         {
           method: "PATCH",
           body: JSON.stringify({
@@ -96,7 +96,7 @@ function Mailfirst() {
       const data = await res.json();
 
       fetch(
-        `https://mail-box01-default-rtdb.firebaseio.com/${emailSender}/sent.json`,
+        `https://mail-box01-default-rtdb.firebaseio.com/${emailSender}/sent/${data.name}.json`,
         {
           method: "PATCH",
           body: JSON.stringify({

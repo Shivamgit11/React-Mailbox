@@ -26,6 +26,11 @@ const MailDetails = () => {
 
   return (
     <Fragment>
+      <div className="d-grid gap-2">
+        <Button variant="primary" size="lg" href="/mail">
+          @Shivam-MailBox
+        </Button>
+      </div>
       <Card style={{ width: "90rem" }}>
         <Card.Body>
           <Card.Title>

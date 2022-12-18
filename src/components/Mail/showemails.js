@@ -3,7 +3,7 @@ import axios from "axios";
 import AllEmails from "./Allemails";
 
 const ShowEmail = (props) => {
-//   const id = Math.random();
+  //   const id = Math.random();
 
   console.log("inside show Emails");
   let email = localStorage.getItem("Email").replace(".", "").replace("@", "");
@@ -11,26 +11,27 @@ const ShowEmail = (props) => {
   const [resmails, setMails] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(
-        `https://mail-box01-default-rtdb.firebaseio.com/${email}/received.json`
-      )
-      .then((res) => {
-        console.log(res.data);
-        setMails(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    setInterval(() => {
+      axios
+        .get(
+          `https://mail-box01-default-rtdb.firebaseio.com/${email}/received.json`
+        )
+        .then((res) => {
+          console.log(res.data);
+          setMails(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, 2000);
   }, []);
 
-  if ( resmails === null ){
-    return <h2>You have no mail</h2>
+  if (resmails === null) {
+    return <h2>You have no mail</h2>;
   }
 
   const result = Object.values(resmails);
-
-  
+  result.reverse();
 
   return (
     <>
