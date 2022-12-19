@@ -42,6 +42,7 @@ const ShowEmail = (props) => {
             id: item.id,
             subject: item.subject,
             message: item.message,
+            read: item.read,
           }}
         />
       ))}

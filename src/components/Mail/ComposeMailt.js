@@ -67,6 +67,7 @@ function Mailfirst() {
           method: "PATCH",
           body: JSON.stringify({
             id: data.name,
+            read: true,
           }),
         }
       );
@@ -156,7 +157,7 @@ function Mailfirst() {
             toolbarClassName="toolbarClassName"
             wrapperClassName="wrapperClassName"
             editorClassName="editorClassName"
-            wrapperStyle={{ width: 1350,height: 250, border: "1px solid black" }}
+            wrapperStyle={{ width: 1490,height: 250, border: "1px solid black" }}
           />
         </Form.Group>
         <Form.Group>

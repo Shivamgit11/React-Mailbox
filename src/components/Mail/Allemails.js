@@ -4,12 +4,28 @@ import { Link } from "react-router-dom";
 import classes from "./Allmails.module.css";
 
 const AllEmails = (props) => {
-  const { from, subject, id, message } = props.item;
-  const [seenMessage, setseenMessage] = useState(true);
+  const { from, subject, id, message, read } = props.item;
+
+  let email = localStorage.getItem("Email").replace(".", "").replace("@", "");
+  let checkread = read;
+  console.log("inside allMails", checkread);
 
   const seenLIke = () => {
-    setseenMessage(false);
+    console.log(id);
+    fetch(
+      `https://mail-box01-default-rtdb.firebaseio.com/${email}/recived/${id}.json`,
+      {
+        method: "PATCH",
+        body: JSON.stringify({
+          read: false,
+        }),
+      }
+    );
+    console.log("Seen check");
   };
+
+  let seenCheck = (checkread === true) ? "* " : " ";
+  console.log(seenCheck);
 
   return (
     <Fragment>
@@ -20,13 +36,7 @@ const AllEmails = (props) => {
               <Row>
                 <Col>from--{from}</Col>
                 <Col xs={6}>subject--{subject}</Col>
-                {seenMessage && (
-                  <Col>
-                    <Badge pill bg="info">
-                      *
-                    </Badge>{" "}
-                  </Col>
-                )}
+                {seenCheck}
               </Row>
             </Link>
           </div>

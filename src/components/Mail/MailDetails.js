@@ -21,7 +21,7 @@ const MailDetails = () => {
       }
     );
     alert("Delete mail handler is working");
-    <Redirect to="/inbox" />;
+    <Redirect to="/mail" />;
   };
 
   return (
