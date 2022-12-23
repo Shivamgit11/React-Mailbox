@@ -8,8 +8,8 @@ import { Button } from "react-bootstrap";
 const Showsentedmails = () => {
   const location = useLocation();
   const product = location.state2;
-  console.log("inside show sent mails",product);
-  console.log(product.id);
+  // console.log("inside show sent mails",product);
+  // console.log(product.id);
 
   return (
     <Fragment>
@@ -34,6 +34,9 @@ const Showsentedmails = () => {
           
         </Card.Body>
       </Card>
+      <Button variant="primary" href="/mail">
+          GotoMailbox
+        </Button>
     </Fragment>
   );
 };

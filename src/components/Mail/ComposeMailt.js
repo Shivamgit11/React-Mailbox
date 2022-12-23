@@ -78,6 +78,7 @@ function Mailfirst() {
           from: objRecieved.from,
           subject: objRecieved.subject,
           message: objRecieved.message,
+          read: true
         })
       );
     });

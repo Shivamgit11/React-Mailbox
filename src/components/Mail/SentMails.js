@@ -2,47 +2,53 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import SentMailss from "./SentMailsDesign";
+import { useSelector } from "react-redux";
+import useSendDataHttp from "../../http/sent-http";
 
-const ShowsentMail = (props) => {
+const ShowsentMail = (props) => { 
+  const result2 = useSendDataHttp(); 
+  // console.log(result2);
   //   const id = Math.random();
 
-  console.log("inside show Emails");
-  let email = localStorage.getItem("Email").replace(".", "").replace("@", "");
+  // console.log("inside show Emails");
+  // let email = localStorage.getItem("Email").replace(".", "").replace("@", "");
 
-  const [resmails, setMails] = useState([]);
+  // const [resmails, setMails] = useState([]);
+  let sendMails11 = useSelector((state) => state.email.sentEmails);
+  // console.log(sendMails11);
 
   //   setTimeout(() => {
   // setInterval(() => {
-  useEffect(() => {
-    setInterval(() => {
-      axios
-        .get(
-          `https://mail-box01-default-rtdb.firebaseio.com/${email}/sent.json`
-        )
-        .then((res) => {
-          console.log(res.data);
+  // useEffect(() => {
+  //   setInterval(() => {
+  //     axios
+  //       .get(
+  //         `https://mail-box01-default-rtdb.firebaseio.com/${email}/sent.json`
+  //       )
+  //       .then((res) => {
+  //         console.log(res.data);
 
-          setMails(res.data);
-          console.log(setMails);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }, 2000);
-  }, []);
+  //         setMails(res.data);
+  //         console.log(setMails);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }, 2000);
+  // }, []);
   // }, 2000);
   //   }, 2000);
 
-  if (resmails === null) {
-    return <h2>You have no mail</h2>;
-  }
+  // if (resmails === null) {
+  //   return <h2>You have no mail</h2>;
+  // }
 
-  const result = Object.values(resmails);
-  result.reverse();
+  // const result = Object.values(resmails);
+  // result.reverse();
 
   return (
     <>
-      {result.map((item) => (
+      {result2.map((item) => (
         <SentMailss
           item={{
             to: item.to,

@@ -13,8 +13,8 @@ const MailDetails = () => {
   let Id = product.item.id;
   console.log(Id);
 
-  const DeletemailHandler = () => {
-    fetch(
+  const DeletemailHandler = async() => {
+    await fetch(
       `https://mail-box01-default-rtdb.firebaseio.com/${email}/received/${Id}.json`,
       {
         method: "DELETE",
@@ -49,6 +49,9 @@ const MailDetails = () => {
           </Button>{" "}
         </Card.Body>
       </Card>
+      <Button variant="primary" href="/mail">
+          GotoMailbox
+        </Button>
     </Fragment>
   );
 };

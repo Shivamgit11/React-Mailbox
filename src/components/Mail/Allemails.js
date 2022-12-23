@@ -2,17 +2,19 @@ import React, { Fragment, useState } from "react";
 import { Col, Container, Row, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import classes from "./Allmails.module.css";
+import { Button } from "react-bootstrap";
 
 const AllEmails = (props) => {
   const { from, subject, id, message, read } = props.item;
 
   let email = localStorage.getItem("Email").replace(".", "").replace("@", "");
   let checkread = read;
-  console.log("inside allMails", checkread);
+  // console.log("inside allMails", checkread);
 
-  const seenLIke = () => {
+  const seenLIke = async() => {
+    console.log("inside seenlike");
     console.log(id);
-    fetch(
+    await fetch(
       `https://mail-box01-default-rtdb.firebaseio.com/${email}/recived/${id}.json`,
       {
         method: "PATCH",
@@ -21,11 +23,11 @@ const AllEmails = (props) => {
         }),
       }
     );
-    console.log("Seen check");
+    // console.log("Seen check");
   };
 
   let seenCheck = (checkread === true) ? "* " : " ";
-  console.log(seenCheck);
+  // console.log(seenCheck);
 
   return (
     <Fragment>
@@ -41,6 +43,7 @@ const AllEmails = (props) => {
             </Link>
           </div>
         </Container>
+        
       </div>
     </Fragment>
   );

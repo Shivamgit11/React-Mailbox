@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 
-
 import ShowEmail from "./showemails";
 
 const Inbox = () => {

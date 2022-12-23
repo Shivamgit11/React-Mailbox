@@ -4,15 +4,23 @@ import Tabs from "react-bootstrap/Tabs";
 import Mailfirst from "./ComposeMailt";
 import Inbox from "./Inbox";
 import ShowsentMail from "./SentMails";
-import { Button } from "react-bootstrap";
+import { Badge, Button } from "react-bootstrap";
+import useSentDataHttp from "../../http/received-http";
+
 
 function ManagedMails() {
-  let check = 2;
+  // let countmessage = props;
+  let count = 0;
+  const result = useSentDataHttp();
+  result.map((item) => {
+    if (item.read === true) count++;
+  });
+
   return (
     <Fragment>
-        <div className="d-grid gap-2">
+      <div className="d-grid gap-2">
         <Button variant="primary" size="lg" href="/mail">
-          @Shivam-MailBox
+          @Shivam-MailBox--"{count}"
         </Button>
       </div>
       <Tabs
@@ -24,7 +32,7 @@ function ManagedMails() {
         <Tab eventKey="compose" title="COMPOSE">
           <Mailfirst />
         </Tab>
-        <Tab eventKey="Inbox" title="INBOX" >
+        <Tab eventKey="Inbox" title="INBOX">
           <Inbox />
         </Tab>
         <Tab eventKey="sent" title="SENT">
