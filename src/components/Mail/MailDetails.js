@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Redirect, useLocation } from "react-router-dom";
+import { Redirect, useHistory, useLocation } from "react-router-dom";
 
 import { Button } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
@@ -12,6 +12,7 @@ const MailDetails = () => {
   let email = localStorage.getItem("Email").replace(".", "").replace("@", "");
   let Id = product.item.id;
   console.log(Id);
+  let history = useHistory();
 
   const DeletemailHandler = async() => {
     await fetch(
@@ -21,7 +22,7 @@ const MailDetails = () => {
       }
     );
     alert("Delete mail handler is working");
-    <Redirect to="/mail" />;
+    history.replace("/mail");
   };
 
   return (
@@ -57,3 +58,6 @@ const MailDetails = () => {
 };
 
 export default MailDetails;
+
+
+

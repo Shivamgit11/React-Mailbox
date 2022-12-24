@@ -19,7 +19,6 @@ const emailSlice = createSlice({
         subject: newEmail.subject,
         message: newEmail.message,
         read: newEmail.read,
-        
       });
     },
     sentBox(state, action) {
@@ -31,6 +30,14 @@ const emailSlice = createSlice({
         subject: sentEmail.subject,
         message: sentEmail.message,
       });
+    },
+    UncreaseUnreadEmail(state) {
+      state.unread = state.unread + 1;
+    },
+    reduceUnreadEmails(state) {
+      if (state.unread > 0) {
+        state.unread = state.unread - 1;
+      }
     },
   },
 });

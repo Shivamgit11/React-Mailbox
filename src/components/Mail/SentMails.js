@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import axios from "axios";
 
 import SentMailss from "./SentMailsDesign";
@@ -7,6 +7,7 @@ import useSendDataHttp from "../../http/sent-http";
 
 const ShowsentMail = (props) => { 
   const result2 = useSendDataHttp(); 
+  
   // console.log(result2);
   //   const id = Math.random();
 
@@ -15,6 +16,11 @@ const ShowsentMail = (props) => {
 
   // const [resmails, setMails] = useState([]);
   let sendMails11 = useSelector((state) => state.email.sentEmails);
+  console.log(sendMails11);
+  console.log(result2);
+  if(result2.length === 0) {
+    return <h1>If you have no mail</h1>
+  }
   // console.log(sendMails11);
 
   //   setTimeout(() => {
@@ -47,7 +53,7 @@ const ShowsentMail = (props) => {
   // result.reverse();
 
   return (
-    <>
+    <Fragment>
       {result2.map((item) => (
         <SentMailss
           item={{
@@ -58,7 +64,7 @@ const ShowsentMail = (props) => {
           }}
         />
       ))}
-    </>
+    </Fragment>
   );
 };
 

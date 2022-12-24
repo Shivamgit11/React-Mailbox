@@ -5,13 +5,15 @@ import Mailfirst from "./ComposeMailt";
 import Inbox from "./Inbox";
 import ShowsentMail from "./SentMails";
 import { Badge, Button } from "react-bootstrap";
-import useSentDataHttp from "../../http/received-http";
+import useReceivedDataHttp from "../../http/received-http";
 
 
 function ManagedMails() {
   // let countmessage = props;
   let count = 0;
-  const result = useSentDataHttp();
+  const result = useReceivedDataHttp();
+  console.log(result);
+  
   result.map((item) => {
     if (item.read === true) count++;
   });
@@ -20,7 +22,10 @@ function ManagedMails() {
     <Fragment>
       <div className="d-grid gap-2">
         <Button variant="primary" size="lg" href="/mail">
+          <span>
           @Shivam-MailBox--"{count}"
+          </span>
+          
         </Button>
       </div>
       <Tabs

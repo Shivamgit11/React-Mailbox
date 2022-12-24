@@ -23,7 +23,7 @@ const useSendDataHttp = () => {
   }, [email]);
 
   if (resmails === null) {
-    return <h2>You have no mail</h2>;
+    return "";
   }
 
   const result = Object.values(resmails);

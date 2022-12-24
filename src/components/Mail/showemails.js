@@ -39,12 +39,15 @@ const ShowEmail = (props) => {
   // })
   // console.log("logcount",count);
   // <ManagedMails count={count} />
-  const result = useReceivedDataHttp();
+  const receivedmails11 = useReceivedDataHttp();
+  if(receivedmails11.length === 0) {
+    return <h1>YOu have no mail</h1>
+  }
   // console.log(result);
 
   return (
     <>
-      {result.map((item) => (
+      {receivedmails11.map((item) => (
         
         <AllEmails
           item={{
