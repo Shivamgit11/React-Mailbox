@@ -1,8 +1,8 @@
-import React, { Fragment, useEffect, useState } from "react";
-import axios from "axios";
+import React, { Fragment } from "react";
+
 
 import SentMailss from "./SentMailsDesign";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import useSendDataHttp from "../../http/sent-http";
 
 const ShowsentMail = (props) => { 
@@ -15,11 +15,11 @@ const ShowsentMail = (props) => {
   // let email = localStorage.getItem("Email").replace(".", "").replace("@", "");
 
   // const [resmails, setMails] = useState([]);
-  let sendMails11 = useSelector((state) => state.email.sentEmails);
-  console.log(sendMails11);
-  console.log(result2);
+  // let sendMails11 = useSelector((state) => state.email.sentEmails);
+  // console.log(sendMails11);
+  // console.log(result2);
   if(result2.length === 0) {
-    return <h1>If you have no mail</h1>
+    return <h1>If you have no mail || wait to fetch</h1>
   }
   // console.log(sendMails11);
 

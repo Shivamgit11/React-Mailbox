@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
-import { Col, Container, Row, Badge } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Col, Container, Row,  } from "react-bootstrap";
+
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
@@ -9,9 +9,23 @@ import classes from "./Allmails.module.css";
 const SentMailss = (props) => {
   const { to, subject, id, message } = props.item;
   const [show, setShow] = useState(false);
+  let email = localStorage.getItem("Email").replace(".", "").replace("@", "");
 
-  const handleClose = () => setShow(false);
+  const delethandler = () => {
+    console.log("inside sentDelete");
+    console.log(id);
+    fetch(
+      `https://mailbox-c3cf7-default-rtdb.firebaseio.com/${email}/sent/${id}.json`,
+      {
+        method: "DELETE",
+      }
+    );
+    alert("Deleted sent mail");
+    
+    setShow(false);
+  };
   const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
 
   return (
     <Fragment>
@@ -48,6 +62,9 @@ const SentMailss = (props) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
+          <Button variant="primary" onClick={delethandler}>
+              Delete Mail
+            </Button>
         </Modal.Footer>
       </Modal>
     </Fragment>

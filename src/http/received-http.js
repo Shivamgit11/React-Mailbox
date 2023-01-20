@@ -11,7 +11,7 @@ const useReceivedDataHttp = () => {
     setInterval(() => {
       axios
         .get(
-          `https://mail-box01-default-rtdb.firebaseio.com/${email}/received.json`
+          `https://mailbox-c3cf7-default-rtdb.firebaseio.com/${email}/received.json`
         )
         .then((res) => {
           // console.log(res.data);

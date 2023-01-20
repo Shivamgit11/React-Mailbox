@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import Header from "../Pages/Header";
 
 import { Fragment } from "react";
 import { Button, Form } from "react-bootstrap";
@@ -10,7 +9,6 @@ import { useDispatch } from "react-redux";
 // import { Fragment } from "react-bootstrap/dist/react-bootstrap";
 
 function Mailfirst() {
-
   const [message, Setmessage] = useState();
   const EmailInputRef = useRef();
   const subjectInputRef = useRef();
@@ -48,7 +46,7 @@ function Mailfirst() {
     };
 
     fetch(
-      `https://mail-box01-default-rtdb.firebaseio.com/${receivedEmail}/received.json`,
+      `https://mailbox-c3cf7-default-rtdb.firebaseio.com/${receivedEmail}/received.json`,
       {
         method: "POST",
         body: JSON.stringify({
@@ -62,7 +60,7 @@ function Mailfirst() {
       const data = await res.json();
 
       fetch(
-        `https://mail-box01-default-rtdb.firebaseio.com/${receivedEmail}/received/${data.name}.json`,
+        `https://mailbox-c3cf7-default-rtdb.firebaseio.com/${receivedEmail}/received/${data.name}.json`,
         {
           method: "PATCH",
           body: JSON.stringify({
@@ -78,13 +76,13 @@ function Mailfirst() {
           from: objRecieved.from,
           subject: objRecieved.subject,
           message: objRecieved.message,
-          read: true
+          read: true,
         })
       );
     });
 
     fetch(
-      `https://mail-box01-default-rtdb.firebaseio.com/${emailSender}/sent.json`,
+      `https://mailbox-c3cf7-default-rtdb.firebaseio.com/${emailSender}/sent.json`,
       {
         method: "POST",
         body: JSON.stringify({
@@ -98,7 +96,7 @@ function Mailfirst() {
       const data = await res.json();
 
       fetch(
-        `https://mail-box01-default-rtdb.firebaseio.com/${emailSender}/sent/${data.name}.json`,
+        `https://mailbox-c3cf7-default-rtdb.firebaseio.com/${emailSender}/sent/${data.name}.json`,
         {
           method: "PATCH",
           body: JSON.stringify({
@@ -122,7 +120,6 @@ function Mailfirst() {
 
   return (
     <Fragment>
-      
       <Form>
         <Form.Group>
           <Form.Label>To</Form.Label>
@@ -158,7 +155,11 @@ function Mailfirst() {
             toolbarClassName="toolbarClassName"
             wrapperClassName="wrapperClassName"
             editorClassName="editorClassName"
-            wrapperStyle={{ width: 1490,height: 250, border: "1px solid black" }}
+            wrapperStyle={{
+              width: 1490,
+              height: 250,
+              border: "1px solid black",
+            }}
           />
         </Form.Group>
         <Form.Group>

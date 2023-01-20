@@ -1,13 +1,9 @@
 import React from "react";
 import "./App.css";
 import AuthPage from "./components/Pages/AuthPage";
-import { Redirect, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 import ManagedMails from "./components/Mail/ManagedMails";
-
-
-
-
 
 function App() {
   return (
@@ -18,7 +14,6 @@ function App() {
       <Route path="/auth" exact>
         <AuthPage />
       </Route>
-      
 
       <Route path="/mail">
         {/* <Mailfirst /> */}

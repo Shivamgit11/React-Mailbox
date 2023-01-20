@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
-import { Col, Container, Row, Badge } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Col, Container, Row } from "react-bootstrap";
+
 import classes from "./Allmails.module.css";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
@@ -14,12 +14,11 @@ const AllEmails = (props) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const handleClose1 = () => {
+  const handleShow = () => {
     console.log("inside seenlike");
     console.log(id);
     fetch(
-      `https://mail-box01-default-rtdb.firebaseio.com/${email}/recived/${id}.json`,
+      `https://mailbox-c3cf7-default-rtdb.firebaseio.com/${email}/received/${id}.json`,
       {
         method: "PATCH",
         body: JSON.stringify({
@@ -27,16 +26,18 @@ const AllEmails = (props) => {
         }),
       }
     );
-
+    setShow(true);
+  };
+  const handleClose1 = () => {
     fetch(
-      `https://mail-box01-default-rtdb.firebaseio.com/${email}/received/${id}.json`,
+      `https://mailbox-c3cf7-default-rtdb.firebaseio.com/${email}/received/${id}.json`,
       {
         method: "DELETE",
       }
     );
     alert("Delete mail handler is working");
-    console.log("bhe gel")
-    
+    console.log("bhe gel");
+
     setShow(false);
   };
   // console.log("inside allMails", checkread);
@@ -44,21 +45,6 @@ const AllEmails = (props) => {
   //////////=====working with modals
 
   //////////=====working with modals
-
-  const seenLIke = async () => {
-    console.log("inside seenlike");
-    console.log(id);
-    await fetch(
-      `https://mail-box01-default-rtdb.firebaseio.com/${email}/recived/${id}.json`,
-      {
-        method: "PATCH",
-        body: JSON.stringify({
-          read: false,
-        }),
-      }
-    );
-    // console.log("Seen check");
-  };
 
   let seenCheck = checkread === true ? "* " : " ";
   // console.log(seenCheck);
